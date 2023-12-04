@@ -43,6 +43,38 @@ const createInscription = async (req, res, next) => {
     }
 };
 
+//update inscription by id
+const updateInscriptionById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+     const {
+       emailUser,
+       idProject,
+       inscriptionHour,
+       userName,
+       projectName,
+       status,
+     } = req.body;
+
+    const InscripcionUpdated = await Inscripciones.findByIdAndUpdate(
+      id,
+      {
+        emailUser,
+        idProject,
+        inscriptionHour,
+        userName,
+        projectName,
+        status,
+      },
+      { new: true }
+    );
+    if (!InscripcionUpdated) throw httpError(404, "Inscription not found");
+    res.status(200).json({ message: "Inscripcion updated", data: InscripcionUpdated });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Update Inscription by email
 const updateInscriptionByEmail = async (req, res, next) => {
     try {
@@ -111,9 +143,10 @@ const deleteInscriptionByEmail = async (req, res, next) => {
 };
 
 module.exports = {
-    createInscription,
-    getAllInscriptions,
-    getInscriptionByEmail,
-    updateInscriptionByEmail,
-    deleteInscriptionByEmail,
+  createInscription,
+  getAllInscriptions,
+  getInscriptionByEmail,
+  updateInscriptionByEmail,
+  deleteInscriptionByEmail,
+  updateInscriptionById
 };

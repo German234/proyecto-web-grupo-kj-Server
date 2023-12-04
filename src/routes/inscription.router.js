@@ -7,6 +7,7 @@ const {
   getInscriptionByEmail,
   updateInscriptionByEmail,
   deleteInscriptionByEmail,
+  updateInscriptionById,
 } = require("../controllers/inscription.controller");
 
 const {
@@ -20,6 +21,6 @@ router.get("/", getAllInscriptions);
 router.get("/:emailUser", emailInParams, runValidation, getInscriptionByEmail);
 router.put("/:emailUser", emailInParams, updateInscriptionByEmail);
 router.delete("/:emailUser", deleteInscriptionByEmail);
+router.put("/update/:id", updateInscriptionById);
 
 module.exports = router;
-
