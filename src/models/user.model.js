@@ -23,14 +23,38 @@ const userSchema = new Schema({
     required: true,
   },
 
-  projectActives: {
-    type: [String],
-    required: false,
-  },
-  projectfinished: {
-    type: [String],
-    required: false,
-  },
+  projectsActives: [
+    {
+      idProject: {
+        type: String,
+        required: false,
+      },
+      startDate: {
+        type: String,
+        required: false,
+      },
+      finishedDate: {
+        type: String,
+        required: false,
+      },
+    },
+  ],
+  finishedProjects: [
+    {
+      idProject: {
+        type: String,
+        required: false,
+      },
+      startDate: {
+        type: String,
+        required: false,
+      },
+      finishedDate: {
+        type: String,
+        required: false,
+      },
+    },
+  ],
 
   projectFavorites: {
     type: [String],
